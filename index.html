@@ -16,7 +16,7 @@
       request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
           // Success!
-          console.log(request.responseText);
+          console.log('request made');
         } else {
           // We reached our target server, but it returned an error
         }
@@ -31,7 +31,7 @@
     
   function makeNextRequest() { 
       dataFileIndex++;
-      if (dataFileIndex > dataFilesLength) {
+      if (dataFileIndex >= dataFilesLength) {
         dataFileIndex = 0;
       };
       getData(dataFiles[dataFileIndex]);
@@ -46,7 +46,7 @@
   }
   
   ready(function() {
-    intervalTimer = setInterval(makeNextRequest,1000);
+    intervalTimer = setInterval(makeNextRequest,7500);
     //clearInterval(intervalTimer);
   });
 </script>
