@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p>testing ajax hooks/updates</p>
+<script>
+  var dataFiles = ['1__data.json', '2__data.json', '3__data.json']
+    , dataFilesLength = dataFiles.length
+    , dataFileIndex = 99
+    , intervalTimer
+    ;
+    
+  function getData(url) {
+    var request = new XMLHttpRequest();
+      request.open('GET', url, true);
+
+      request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+          // Success!
+          console.log(request.responseText);
+        } else {
+          // We reached our target server, but it returned an error
+        }
+      };
+
+      request.onerror = function() {
+        // There was a connection error of some sort
+      };
+
+      request.send();
+  };
+    
+  function makeNextRequest() { 
+      dataFileIndex++;
+      if (dataFileIndex > dataFilesLength) {
+        dataFileIndex = 0;
+      };
+      getData(dataFiles[dataFileIndex]);
+  }
+  
+  function ready(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+      fn();
+    } else {
+      document.addEventListener('DOMContentLoaded', fn);
+    }
+  }
+  
+  ready(function() {
+    intervalTimer = setInterval(makeNextRequest,1000);
+    //clearInterval(intervalTimer);
+  });
+</script>
+</body>
+</html>
