@@ -3,7 +3,7 @@
 <body>
 <p>testing ajax hooks/updates</p>
 <script>
-  var dataFiles = ['1__data.json', '2__data.json', '3__data.json', '4__data.json']
+  var dataFiles = ['https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json', '1__data.json', '2__data.json', '3__data.json', '4__data.json']
     , dataFilesLength = dataFiles.length
     , dataFileIndex = 99
     , intervalTimer
@@ -46,7 +46,8 @@
   }
   
   ready(function() {
-    intervalTimer = setInterval(makeNextRequest,7500);
+    makeNextRequest();
+    intervalTimer = setInterval(makeNextRequest,3000);
     //clearInterval(intervalTimer);
   });
 </script>
